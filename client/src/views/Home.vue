@@ -1,18 +1,29 @@
 <template>
   <div class="home">
     
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <section class="hero is-large is-light is-bold">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Primary bold title
+        </h1>
+        <h2 class="subtitle">
+          Primary bold subtitle
+        </h2>
+      </div>
+    </div>
+  </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    
   },
 };
 </script>
