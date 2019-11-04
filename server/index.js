@@ -11,6 +11,8 @@ app
     .get('/sql', (req, res)=> res.send(process.env.MYSQLCONNSTR_localdb))
     .use('/', express.static( path.join( __dirname , '../client/dist/' ) ) )
     .use('/users', userController )
-    .use('/game', gameController );
+    .use('/game', gameController )
+    .get('*', (req, res)=> res.sendFile( path.join( __dirname , '../client/dist/' ) ) )
+    ;
 
 app.listen(port, () => console.log(`Running on http://localhost:${port}`));
