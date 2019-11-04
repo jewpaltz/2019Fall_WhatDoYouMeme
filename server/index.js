@@ -9,7 +9,7 @@ const port = process.env.PORT ||  3000;
 app
     .get('/port', (req, res)=> res.send("Using port: " + port))
     .get('/sql', (req, res)=> res.send(process.env.MYSQLCONNSTR_localdb))
-    .use('/static', express.static( path.join( __dirname , '../NoFramework' ) ) )
+    .use('/', express.static( path.join( __dirname , '../client/dist/' ) ) )
     .use('/users', userController )
     .use('/game', gameController );
 

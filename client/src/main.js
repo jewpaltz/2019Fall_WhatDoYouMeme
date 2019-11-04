@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import '@fortawesome/fontawesome-free/js/all';
 import 'bulma/css/bulma.css';
+import 'notyf/notyf.min.css'; // for React and Vue
 
 Vue.config.productionTip = false;
 
