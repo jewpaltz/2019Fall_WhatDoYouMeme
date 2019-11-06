@@ -5,7 +5,7 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Primary bold title
+          Running in Docker
         </h1>
         <h2 class="subtitle">
           Primary bold subtitle
