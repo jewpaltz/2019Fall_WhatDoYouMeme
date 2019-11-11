@@ -55,7 +55,8 @@ export default {
     }),
     async created(){
         this.My_Captions = await Game_Server.Get_Hand();
-        this.game = await Game_Server.Get_State();
+        setInterval( async ()=> this.game = await Game_Server.Get_State(), 2000 )
+        
     },
     methods: {
         pictureClicked(){
