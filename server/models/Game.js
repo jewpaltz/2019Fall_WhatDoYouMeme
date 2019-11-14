@@ -29,6 +29,13 @@ module.exports.Game = {
         this.Picture_In_Play = this.Picture_Deck[this.Top_Of_Picture_Deck++];
         this.Dealer++;
     },
+    Join(name){
+        if(this.Players.find(x=> x.name == name )){
+            return -1;
+        }
+        this.Players.push({ name, score: 0 });
+        return this.Players.length - 1;
+    },
     Get_State(){
         return {
             Players: this.Players,

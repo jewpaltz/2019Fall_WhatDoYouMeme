@@ -7,6 +7,9 @@ export const Game_Server = {
     Flip_Picture(){
         return api('picture/flip')
     },
+    Join(name){
+        return api('players', { name });
+    },
     Get_State(){
         return api('')
     }

@@ -13,6 +13,7 @@ app.use(function(req, res, next) {
 });
 
 app
+    .use(express.json())
     .get('/port', (req, res)=> res.send("Using port: " + port))
     .get('/sql', (req, res)=> res.send(process.env.MYSQLCONNSTR_localdb))
     .use('/static', express.static( path.join( __dirname , '../NoFramework' ) ) )
