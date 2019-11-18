@@ -1,4 +1,5 @@
 const Caption_Deck = require('./Captions');
+const { CustomError } = require('./CustomError');
 
 module.exports.Game = {
     Players: [
@@ -31,7 +32,7 @@ module.exports.Game = {
     },
     Join(name){
         if(this.Players.find(x=> x.name == name )){
-            return -1;
+            throw new CustomError(409, 'Another user is already using that name.');
         }
         this.Players.push({ name, score: 0 });
         return this.Players.length - 1;

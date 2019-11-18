@@ -14,11 +14,7 @@ app.get('/picture/flip', (req, res)=>{
 } );
 app.post('/players', (req, res)=>{
     const player_id = Game.Join(req.body.name);
-    if(player_id == -1){
-        res.status(500).send({ success: false, message: "Invalid name" });
-    }else{
-        res.send({ success: true, player_id });
-    }
+    res.send({ success: true, player_id });
 } );
 
 
