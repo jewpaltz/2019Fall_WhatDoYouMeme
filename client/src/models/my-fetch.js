@@ -22,3 +22,7 @@ export async function api(url, data){
         throw await response.json();
     }
 }
+
+export const User = {
+    User_Id: null
+}

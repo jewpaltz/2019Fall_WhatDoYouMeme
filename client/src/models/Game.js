@@ -1,4 +1,5 @@
-import { api } from "./my-fetch";
+import { api, User } from "./my-fetch";
+import $router from "../router/index";
 
 export const Game_Server = {
     Get_Hand(amount = 7){
@@ -7,8 +8,11 @@ export const Game_Server = {
     Flip_Picture(){
         return api('picture/flip')
     },
-    Join(name){
-        return api('players', { name });
+    async Join(name){
+        const { player_id } = await api('players', { name });
+        User.User_Id = player_id;
+        $router.push( { name: 'game'} );
+
     },
     Get_State(){
         return api('')
