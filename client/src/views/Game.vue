@@ -75,8 +75,8 @@ export default {
         pictureClicked(){
             Game_Server.Flip_Picture();
         },
-        submitCaption(caption, i){
-            Game_Server.Submit_Caption(caption);
+        async submitCaption(caption, i){
+            const response = await Game_Server.Submit_Caption(caption);
             this.My_Captions.splice(i, 1);
         }
     }

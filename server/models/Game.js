@@ -38,6 +38,12 @@ module.exports.Game = {
         return this.Players.length - 1;
     },
     Submit_Caption(player_id, text){
+        if(player_id == this.dealer){
+            throw new CustomError(500, "Dealer is not allowed to submit a caption")
+        }
+        if( this.Captions_In_Play.some( x=> x.player_id == player_id ) ){
+            throw new CustomError(500, "Sorry, you already submitted a caption")
+        }
         this.Captions_In_Play.push( { player_id, text } );
     },
     Get_State(){
