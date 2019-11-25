@@ -8,6 +8,9 @@ export const Game_Server = {
     Flip_Picture(){
         return api('picture/flip')
     },
+    Submit_Caption(text){
+        return api('captions_in_play', { text  })
+    },
     async Join(name){
         const { player_id } = await api('players', { name });
         User.User_Id = player_id;

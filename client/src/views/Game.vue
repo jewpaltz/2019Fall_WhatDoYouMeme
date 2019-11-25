@@ -24,7 +24,9 @@
                 <p class="panel-heading">
                     My Hand
                 </p>
-                <li v-for="(c, i) in My_Captions " :key="i" class="panel-block is-active">
+                <li v-for="(c, i) in My_Captions " :key="i" 
+                    class="panel-block is-active"
+                    @click="submitCaption(c ,i)">
                     {{c}}
                 </li>
             </ul>
@@ -38,6 +40,17 @@
                     Flip First Picture
                 </div>
             </div>
+
+            <ul class="panel">
+                <p class="panel-heading">
+                    Captions In Play
+                </p>
+                <li v-for="(c, i) in game.Captions_In_Play " :key="i" class="panel-block is-active">
+                    
+                    {{c}}
+                </li>
+            </ul>
+
         </div>
     </div>
 
@@ -61,6 +74,10 @@ export default {
     methods: {
         pictureClicked(){
             Game_Server.Flip_Picture();
+        },
+        submitCaption(caption, i){
+            Game_Server.Submit_Caption(caption);
+            this.My_Captions.splice(i, 1);
         }
     }
 }
