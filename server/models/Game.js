@@ -50,7 +50,7 @@ module.exports.Game = {
         return {
             Players: this.Players,
             Dealer: this.Dealer,
-            Captions_In_Play: this.Captions_In_Play, 
+            Captions_In_Play: this.Captions_In_Play.map(x=> ({ text: x.text, player: this.Caption_Chosen == -1 ? 'hidden' : this.Players[x.player_id].name })), 
             Picture_In_Play: this.Picture_In_Play,
             Caption_Chosen: this.Caption_Chosen
         }

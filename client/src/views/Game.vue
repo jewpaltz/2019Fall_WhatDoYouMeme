@@ -45,9 +45,10 @@
                 <p class="panel-heading">
                     Captions In Play
                 </p>
-                <li v-for="(c, i) in game.Captions_In_Play " :key="i" class="panel-block is-active">
-                    
-                    {{c}}
+                <li v-for="(c, i) in game.Captions_In_Play " :key="i" class="panel-block is-active" :class="{'has-background-warning': i == game.Caption_Chosen }">
+                    <div class="is-expanded">{{c.text}}</div>
+                    <span class="tag " :class=" game.Caption_Chosen > -1 ? 'is-primary' : 'is-light'">{{c.player}}</span>
+                    <button @click.prevent="" :disabled="game.Captions_In_Play.length < game.Players.length - 1"  class="button is-small is-primary">Choose</button>
                 </li>
             </ul>
 
@@ -86,5 +87,8 @@ export default {
 <style>
     .is-clickable {
         cursor: pointer;
+    }
+    .is-expanded {
+        flex-grow: 1;
     }
 </style>
