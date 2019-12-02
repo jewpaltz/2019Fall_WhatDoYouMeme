@@ -12,6 +12,9 @@ export const Game_Server = {
     Submit_Caption(text){
         return api('captions_in_play', { text  })
     },
+    Choose_Caption(id){
+        return api('caption_chosen', { id  })
+    },
     async Join(name){
         const { player_id } = await api('players', { name });
         User.User_Id = player_id;

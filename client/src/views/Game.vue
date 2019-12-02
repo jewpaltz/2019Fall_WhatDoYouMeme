@@ -48,7 +48,12 @@
                 <li v-for="(c, i) in game.Captions_In_Play " :key="i" class="panel-block is-active" :class="{'has-background-warning': i == game.Caption_Chosen }">
                     <div class="is-expanded">{{c.text}}</div>
                     <span class="tag " :class=" game.Caption_Chosen > -1 ? 'is-primary' : 'is-light'">{{c.player}}</span>
-                    <button @click.prevent="" :disabled="game.Captions_In_Play.length < game.Players.length - 1"  class="button is-small is-primary">Choose</button>
+                    <button class="button is-small is-primary"
+                            @click.prevent="chooseCaption(i)" 
+                            v-show="me.User_Id == game.Dealer && game.Caption_Chosen == -1"
+                            :disabled="game.Captions_In_Play.length < game.Players.length - 1"  >
+                            Choose
+                    </button>
                 </li>
             </ul>
 
@@ -80,6 +85,9 @@ export default {
         async submitCaption(caption, i){
             const response = await Game_Server.Submit_Caption(caption);
             this.My_Captions.splice(i, 1);
+        },
+        async chooseCaption(i){
+            const response = await Game_Server.Choose_Caption(i);
         }
     }
 }

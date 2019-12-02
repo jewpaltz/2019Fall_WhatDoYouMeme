@@ -25,6 +25,10 @@ app.post('/captions_in_play', (req, res)=>{
     Game.Submit_Caption(req.user_id, req.body.text);
     res.send({ success: true });
 } );
+app.post('/caption_chosen', (req, res)=>{
+    Game.Choose_Caption(req.user_id, req.body.id);
+    res.send({ success: true });
+} );
 
 
 

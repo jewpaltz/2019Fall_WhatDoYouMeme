@@ -41,13 +41,19 @@ module.exports.Game = {
         return this.Players.length - 1;
     },
     Submit_Caption(player_id, text){
-        if(player_id == this.dealer){
+        if(player_id == this.Dealer){
             throw new CustomError(500, "Dealer is not allowed to submit a caption")
         }
         if( this.Captions_In_Play.some( x=> x.player_id == player_id ) ){
             throw new CustomError(500, "Sorry, you already submitted a caption")
         }
         this.Captions_In_Play.push( { player_id, text } );
+    },
+    Choose_Caption(player_id, id){
+        if(player_id != this.Dealer){
+            throw new CustomError(403, "Only a dealer is allowed to choose the winning caption")
+        }
+        this.Caption_Chosen = id;
     },
     Get_State(){
         return {
