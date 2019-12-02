@@ -31,7 +31,8 @@ module.exports.Game = {
     Flip_Picture(){
         this.Top_Of_Picture_Deck = (this.Top_Of_Picture_Deck + 1) % this.Picture_Deck.length;
         this.Picture_In_Play = this.Picture_Deck[this.Top_Of_Picture_Deck];
-        this.Dealer = (this.Dealer + 1) % this.Players.length;
+        this.Caption_Chosen = -1;
+        this.Captions_In_Play = [];
     },
     Join(name){
         if(this.Players.find(x=> x.name == name )){
@@ -54,6 +55,7 @@ module.exports.Game = {
             throw new CustomError(403, "Only a dealer is allowed to choose the winning caption")
         }
         this.Caption_Chosen = id;
+        this.Dealer = (this.Dealer + 1) % this.Players.length;
     },
     Get_State(){
         return {
