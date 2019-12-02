@@ -2,6 +2,7 @@ import { api, User } from "./my-fetch";
 import $router from "../router/index";
 
 export const Game_Server = {
+    User,
     Get_Hand(amount = 7){
         return api('hand')
     },

@@ -12,7 +12,7 @@
                     Players
                 </p>
                 <li v-for="(p, i) in game.Players " :key="i" 
-                    class="panel-block" :class="{ 'is-active': i == game.Dealer }">
+                    class="panel-block" :class="{ 'is-active': i == game.Dealer, 'has-text-primary': i == me.User_Id }">
                     <span class="panel-icon">
                     <i class="fas" :class=" i == game.Dealer ? 'fa-user-secret' : 'fa-user' " aria-hidden="true"></i>
                     </span>
@@ -65,7 +65,8 @@ import { Game_Server } from "../models/Game";
 export default {
     data: ()=> ({
         game: {},
-        My_Captions: []
+        My_Captions: [],
+        me: Game_Server.User
     }),
     async created(){
         this.My_Captions = await Game_Server.Get_Hand();
