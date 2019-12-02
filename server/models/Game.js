@@ -3,10 +3,12 @@ const { CustomError } = require('./CustomError');
 
 module.exports.Game = {
     Players: [
+        /*
         { name: "Moshe", points: 0 },
         { name: "Bernie", points: 0 },
         { name: "Donald", points: 0 },
         { name: "Andrew", points: 0 },
+        */
     ],
     Picture_Deck: [
         "http://www.dailyhaha.com/_pics/prepared-to-slice-onions.jpg",
@@ -23,12 +25,13 @@ module.exports.Game = {
     Picture_In_Play: "",
     Caption_Chosen: -1,
     Get_Hand(amount = 7){
-        this.Top_Of_Caption_Deck += +amount;
+        this.Top_Of_Caption_Deck = (this.Top_Of_Caption_Deck + +amount) % this.Caption_Deck.length;
         return this.Caption_Deck.slice(this.Top_Of_Caption_Deck - amount, this.Top_Of_Caption_Deck)
     },
     Flip_Picture(){
-        this.Picture_In_Play = this.Picture_Deck[this.Top_Of_Picture_Deck++];
-        this.Dealer++;
+        this.Top_Of_Picture_Deck = (this.Top_Of_Picture_Deck + 1) % this.Picture_Deck.length;
+        this.Picture_In_Play = this.Picture_Deck[this.Top_Of_Picture_Deck];
+        this.Dealer = (this.Dealer + 1) % this.Players.length;
     },
     Join(name){
         if(this.Players.find(x=> x.name == name )){
