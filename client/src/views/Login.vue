@@ -11,7 +11,7 @@
                 <p class="panel-heading">
                     Login
                 </p>
-                <div class="panel-block">
+                <form class="panel-block" @submit.prevent="join">
 
                     <div class="field" :class="{ 'is-danger': error }">
                         <div class="field has-addons">
@@ -26,15 +26,15 @@
                                 </span>
                             </div>
                             <div class="control">
-                                <a class="button is-info" @click.prevent="join">
+                                <button class="button is-info" >
                                 Login
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <p class="help is-danger">{{error}}</p>
                     </div>
                     
-                </div>
+                </form>
             </ul>
         </div>
     </div>
