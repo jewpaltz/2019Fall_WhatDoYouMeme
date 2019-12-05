@@ -65,7 +65,7 @@
 
 <script>
 import { Game_Server } from "../models/Game";
-
+import toastr from "vanillatoasts/vanillatoasts";
 
 export default {
     data: ()=> ({
@@ -80,14 +80,18 @@ export default {
     },
     methods: {
         pictureClicked(){
-            Game_Server.Flip_Picture();
+            Game_Server.Flip_Picture().catch(err=> toastr.create({ text: err.message, type: 'error', }) );
         },
         async submitCaption(caption, i){
-            const response = await Game_Server.Submit_Caption(caption);
-            this.My_Captions.splice(i, 1);
+            try{
+                const response = await Game_Server.Submit_Caption(caption);
+                this.My_Captions.splice(i, 1);
+            }catch(err){
+                toastr.create({ text: err.message, type: 'error', });
+            }
         },
-        async chooseCaption(i){
-            const response = await Game_Server.Choose_Caption(i);
+        chooseCaption(i){
+            Game_Server.Choose_Caption(i).catch(err=> toastr.create({ text: err.message, type: 'error', }) );
         }
     }
 }
@@ -99,5 +103,8 @@ export default {
     }
     .is-expanded {
         flex-grow: 1;
+    }
+    #vanillatoasts-container{
+        z-index: 100;
     }
 </style>
