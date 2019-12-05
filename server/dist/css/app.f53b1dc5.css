@@ -1,0 +1,1 @@
+.active{background-color:#f0f8ff;font-weight:700}.kind-of-active{background-color:#f4f8fc;font-weight:100}.is-clickable{cursor:pointer}.is-expanded{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1}#vanillatoasts-container{z-index:100}.fas.fa-exclamation-triangle{display:none}.is-danger .fa-exclamation-triangle{display:inline;color:red}.is-danger .input{border-color:red}

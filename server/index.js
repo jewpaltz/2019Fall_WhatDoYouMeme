@@ -25,9 +25,11 @@ app
     .use(express.json())
     .get('/port', (req, res)=> res.send("Using port: " + port))
     .get('/sql', (req, res)=> res.send(process.env.MYSQLCONNSTR_localdb))
-    .use('/static', express.static( path.join( __dirname , '../NoFramework' ) ) )
+    .use('/', express.static( path.join( __dirname , 'dist' ) ) )
     .use('/users', userController )
-    .use('/game', gameController );
+    .use('/gameApi', gameController )
+    .get('*', (req, res)=> res.sendFile(__dirname + '/dist/index.html' ))
+    ;
 
 app
     .use((err, req, res, next) => {
