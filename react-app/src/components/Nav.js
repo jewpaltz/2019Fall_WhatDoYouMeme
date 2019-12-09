@@ -1,4 +1,10 @@
-<template>
+import React, { useState } from 'react';
+
+export default ()=> {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
   <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
         <router-link exact-active-className="active" className="navbar-item" to="/">
@@ -6,14 +12,14 @@
             Home
         </router-link>
 
-        <a @click.prevent="isOpen = !isOpen" role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a onClick={()=> setIsOpen(!isOpen) } role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
     </div>
 
-    <div id="navbarBasicExample" className="navbar-menu" :className="{ 'is-active' : isOpen }">
+    <div id="navbarBasicExample" className={ `navbar-menu ${ isOpen ? 'is-active' : '' }` } >
         <div className="navbar-start">
 
         <router-link exact-active-className="active" className="navbar-item" to="/about">
@@ -42,7 +48,7 @@
             <a className="navbar-item">
                 Contact
             </a>
-            <hr className="navbar-divider">
+            <hr className="navbar-divider" />
             <a className="navbar-item">
                 Report an issue
             </a>
@@ -64,25 +70,7 @@
         </div>
     </div>
     </nav>
-</template>
-
-<script>
-export default {
-    data(){
-        return {
-            isOpen: false
-        }
-    }
+    )
 }
-</script>
 
-<style>
-    .active {
-        background-color: aliceblue;
-        font-weight: bold;
-    }
-    .kind-of-active {
-        background-color: rgb(244, 248, 252);
-        font-weight: 100;
-    }
-</style>
+
