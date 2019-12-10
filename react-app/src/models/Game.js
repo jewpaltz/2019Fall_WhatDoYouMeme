@@ -3,6 +3,7 @@ import { api, User } from "./my-fetch";
 
 export const Game_Server = {
     User,
+    $router: null,
     Get_Hand(amount = 7){
         return api('hand')
     },
@@ -18,8 +19,8 @@ export const Game_Server = {
     async Join(name){
         const { player_id } = await api('players', { name });
         User.User_Id = player_id;
-        /* Temporarily disabling the programmatic navigation until we can implement it correctly */
-        //$router.push( { name: 'game'} );
+        if(this.$router)
+            this.$router.history.push( '/game' );
 
     },
     Get_State(){

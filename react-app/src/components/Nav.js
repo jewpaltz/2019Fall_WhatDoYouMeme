@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import logo from '../logo.svg';
+import { Game_Server } from '../models/Game';
 
-export default ()=> {
+export default withRouter((props)=> {
 
     const [isOpen, setIsOpen] = useState(false);
+    //  We are using inversion of control to give the Game_server a router that it can use
+    Game_Server.$router = props;
 
     return (
   <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -74,6 +77,6 @@ export default ()=> {
     </div>
     </nav>
     )
-}
+})
 
 
