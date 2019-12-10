@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
 
 export default ()=> {
 
@@ -7,10 +8,10 @@ export default ()=> {
     return (
   <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
-        <router-link exact-active-className="active" className="navbar-item" to="/">
+        <NavLink  className="navbar-item" to="/">
             <i className="fas fa-home fa-pull-left"></i>
             Home
-        </router-link>
+        </NavLink>
 
         <a onClick={()=> setIsOpen(!isOpen) } role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
@@ -22,26 +23,26 @@ export default ()=> {
     <div id="navbarBasicExample" className={ `navbar-menu ${ isOpen ? 'is-active' : '' }` } >
         <div className="navbar-start">
 
-        <router-link exact-active-className="active" className="navbar-item" to="/about">
+        <NavLink  className="navbar-item" to="/about">
             <i className="fab fa-vuejs fa-pull-left"></i>
             About
-        </router-link>
+        </NavLink>
 
-        <router-link exact-active-className="active" className="navbar-item" to="/game">
+        <NavLink  className="navbar-item" to="/game">
             <i className="fas fa-ghost fa-pull-left"></i>
             Game
-        </router-link>
+        </NavLink>
 
         <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link" active-className="kind-of-active">
+            <a className="navbar-link" >
             More
             </a>
 
             <div className="navbar-dropdown">
-                <router-link className="navbar-item" to="/about" exact-active-className="active">
+                <NavLink className="navbar-item" to="/about" >
                     <i className="fab fa-vuejs fa-pull-left"></i>
                     About
-                </router-link>
+                </NavLink>
             <a className="navbar-item">
                 Jobs
             </a>
