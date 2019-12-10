@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 import Router from "./Router";
-import logo from './logo.svg';
 import './App.css';
 
 import Nav from "./components/Nav";
@@ -11,7 +10,6 @@ function App() {
     <BrowserRouter>
     <div className="container">
       <Nav />
-        <img src={logo} className="App-logo" alt="logo" />
         <Router />
     </div>
     </BrowserRouter>

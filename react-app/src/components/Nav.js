@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
+import logo from '../logo.svg';
 
 export default ()=> {
 
@@ -9,6 +10,7 @@ export default ()=> {
   <nav className="navbar" role="navigation" aria-label="main navigation">
     <div className="navbar-brand">
         <NavLink  className="navbar-item" to="/">
+            <img src={logo} className="App-logo" alt="logo" />
             <i className="fas fa-home fa-pull-left"></i>
             Home
         </NavLink>
