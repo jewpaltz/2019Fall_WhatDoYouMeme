@@ -1,4 +1,4 @@
-const api_root = "/gameApi/";
+const api_root = "//localhost:3010/gameApi/";
 
 export async function api(url, data){
     let response;

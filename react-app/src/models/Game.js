@@ -1,5 +1,5 @@
 import { api, User } from "./my-fetch";
-import $router from "../router/index";
+//import $router from "../router/index";
 
 export const Game_Server = {
     User,
@@ -18,7 +18,8 @@ export const Game_Server = {
     async Join(name){
         const { player_id } = await api('players', { name });
         User.User_Id = player_id;
-        $router.push( { name: 'game'} );
+        /* Temporarily disabling the programmatic navigation until we can implement it correctly */
+        //$router.push( { name: 'game'} );
 
     },
     Get_State(){

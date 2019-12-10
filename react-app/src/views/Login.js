@@ -1,5 +1,11 @@
-<template>
-<div>
+import React, { useState } from 'react';
+import { Game_Server } from "../models/Game";
+
+export default ()=> {
+        const [error, setError] = useState("");
+
+return (
+<div className="login-page">
     <h1 className="is-size-1">
         Login
     </h1> 
@@ -11,12 +17,12 @@
                 <p className="panel-heading">
                     Login
                 </p>
-                <form className="panel-block" @submit.prevent="join">
+                <form className="panel-block" onSubmit={join}>
 
-                    <div className="field" :className="{ 'is-danger': error }">
+                    <div className={`field ${error ? 'is-danger': ''}`} >
                         <div className="field has-addons">
                             <div className="control has-icons-left has-icons-right">
-                                <input v-model="name" className="input" type="text" placeholder="Your Name">
+                                <input name="name" className="input" type="text" placeholder="Your Name" />
                                 
                                 <span className="icon is-small is-left">
                                 <i className="fas fa-user"></i>
@@ -31,7 +37,7 @@
                                 </button>
                             </div>
                         </div>
-                        <p className="help is-danger">{{error}}</p>
+                        <p className="help is-danger">{ error }</p>
                     </div>
                     
                 </form>
@@ -39,42 +45,14 @@
         </div>
     </div>
 </div>
-
-</template>
-
-<script>
-import { Game_Server } from "../models/Game";
-
-export default {
-    data: ()=>({
-        name: "",
-        error: ""
-    }),
-    methods: {
-        join(){
-            Game_Server.Join(this.name)
+)
+        function join(e){
+            e.preventDefault();
+            Game_Server.Join(e.target.name.value)
                 .catch(err=> {
                     console.error(err);
-                    this.error = err.message;
+                    setError( err.message );
                 });
         }
-    }
-
 }
-</script>
 
-<style lang="scss">
-
-    .fas.fa-exclamation-triangle {
-        display: none;
-    }
-    .is-danger {
-        .fa-exclamation-triangle {
-            display: inline;
-            color: red;
-        }
-        .input {
-            border-color: red;
-        }
-    }
-</style>
