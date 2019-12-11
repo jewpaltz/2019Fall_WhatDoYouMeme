@@ -18,3 +18,13 @@
     .login-page .is-danger .input {
         border-color: red;
     }
+
+.is-clickable {
+    cursor: pointer;
+}
+.is-expanded {
+    flex-grow: 1;
+}
+#vanillatoasts-container{
+    z-index: 100;
+}
