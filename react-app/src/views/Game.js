@@ -1,3 +1,36 @@
+<script>
+import { Game_Server } from "../models/Game";
+import toastr from "vanillatoasts/vanillatoasts";
+
+export default {
+    data: ()=> ({
+        game: {},
+        My_Captions: [],
+        me: Game_Server.User
+    }),
+    async created(){
+        this.My_Captions = await Game_Server.Get_Hand();
+        setInterval( async ()=> this.game = await Game_Server.Get_State(), 2000 )
+        
+    },
+    methods: {
+        pictureClicked(){
+            Game_Server.Flip_Picture().catch(err=> toastr.create({ text: err.message, type: 'error', }) );
+        },
+        async submitCaption(caption, i){
+            try{
+                const response = await Game_Server.Submit_Caption(caption);
+                this.My_Captions.splice(i, 1);
+            }catch(err){
+                toastr.create({ text: err.message, type: 'error', });
+            }
+        },
+        chooseCaption(i){
+            Game_Server.Choose_Caption(i).catch(err=> toastr.create({ text: err.message, type: 'error', }) );
+        }
+    }
+}
+</script>
 <template>
 <div>
     <h1 className="is-size-1">
@@ -63,39 +96,7 @@
 </div>
 </template>
 
-<script>
-import { Game_Server } from "../models/Game";
-import toastr from "vanillatoasts/vanillatoasts";
 
-export default {
-    data: ()=> ({
-        game: {},
-        My_Captions: [],
-        me: Game_Server.User
-    }),
-    async created(){
-        this.My_Captions = await Game_Server.Get_Hand();
-        setInterval( async ()=> this.game = await Game_Server.Get_State(), 2000 )
-        
-    },
-    methods: {
-        pictureClicked(){
-            Game_Server.Flip_Picture().catch(err=> toastr.create({ text: err.message, type: 'error', }) );
-        },
-        async submitCaption(caption, i){
-            try{
-                const response = await Game_Server.Submit_Caption(caption);
-                this.My_Captions.splice(i, 1);
-            }catch(err){
-                toastr.create({ text: err.message, type: 'error', });
-            }
-        },
-        chooseCaption(i){
-            Game_Server.Choose_Caption(i).catch(err=> toastr.create({ text: err.message, type: 'error', }) );
-        }
-    }
-}
-</script>
 
 <style>
     .is-clickable {
